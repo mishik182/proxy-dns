@@ -17,7 +17,7 @@ class ProxyServer(BaseConfig):
                     continue
                 domain_name += '.'
                 if len(domain_name) > 2:
-                    if domain_name[-4:-2] in '..':
+                    if domain_name[-4:-2] == '..':
                         return domain_name[1:-4]
 
     def is_blocked_domain(self, domain_name):
