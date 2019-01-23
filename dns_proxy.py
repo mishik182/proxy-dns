@@ -16,12 +16,9 @@ class ProxyServer(BaseConfig):
                     domain_name += char
                     continue
                 domain_name += '.'
-        # WHEN USING DIG(LINUX) CLIENT
-        if domain_name[1:-28]:
-            return domain_name[1:-28]
-        # WHEN USING NSLOOKUP(WINDOWS)
-        # OR HOST(LINUX) CLIENT
-        return domain_name[1:-5]
+                if len(domain_name) > 2:
+                    if domain_name[-4:-2] in '..':
+                        return domain_name[1:-4]
 
     def is_blocked_domain(self, domain_name):
         return True if domain_name in self.domain_black_list else False
